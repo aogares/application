@@ -84,6 +84,22 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
+  
+  function writeUserData(textInput, dateInput, textarea) {
+  const db = getDatabase();
+  set(ref(db, 'users/' + userId), {
+    Task Title: textInput,
+    Due Date: dateInput,
+    Description : textarea
+  });
+    
+    const db = getDatabase();
+const starCountRef = ref(db, 'posts/' + postId + '/starCount');
+onValue(starCountRef, (snapshot) => {
+  const data = snapshot.val();
+  updateStarCount(postElement, data);
+});
+}
   </script>
 
 </html>
