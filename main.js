@@ -1,12 +1,12 @@
 let form = document.getElementById("form");
-let textInput = document.getElementById("textInput");
-let dateInput = document.getElementById("dateInput");
-let textarea = document.getElementById("textarea");
+let tasktitle = document.getElementById("tasktitle");
+let duedate = document.getElementById("duedate");
+let description = document.getElementById("description");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
-let add = document.getElementById("add");
+let submitData = document.getElementById("submitData");
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submitData", (e) => {
   e.preventDefault();
   formValidation();
 });
@@ -19,11 +19,11 @@ let formValidation = () => {
     console.log("success");
     msg.innerHTML = "";
     acceptData();
-    add.setAttribute("data-bs-dismiss", "modal");
-    add.click();
+    submitData.setAttribute("data-bs-dismiss", "modal");
+    submitData.click();
 
     (() => {
-      add.setAttribute("data-bs-dismiss", "");
+      submitData.setAttribute("data-bs-dismiss", "");
     })();
   }
 };
@@ -32,9 +32,9 @@ let data = [{}];
 
 let acceptData = () => {
   data.push({
-    text: textInput.value,
-    date: dateInput.value,
-    description: textarea.value,
+    tasktitle: tasktitle.value,
+    duedate: duedate.value,
+    description: description.value,
   });
 
   localStorage.setItem("data", JSON.stringify(data));
@@ -74,17 +74,17 @@ let deleteTask = (e) => {
 let editTask = (e) => {
   let selectedTask = e.parentElement.parentElement;
 
-  textInput.value = selectedTask.children[0].innerHTML;
-  dateInput.value = selectedTask.children[1].innerHTML;
-  textarea.value = selectedTask.children[2].innerHTML;
+  tasktitle.value = selectedTask.children[0].innerHTML;
+  duedate.value = selectedTask.children[1].innerHTML;
+  description.value = selectedTask.children[2].innerHTML;
 
   deleteTask(e);
 };
 
 let resetForm = () => {
-  textInput.value = "";
-  dateInput.value = "";
-  textarea.value = "";
+  tasktitle.value = "";
+  duedate.value = "";
+  description.value = "";
 };
 
 (() => {
