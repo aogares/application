@@ -1,13 +1,13 @@
 
 let form = document.getElementById("form");
-let textInput = document.getElementById("textInput");
-let dateInput = document.getElementById("dateInput");
-let textarea = document.getElementById("textarea");
+let textInput = document.getElementById("tasktitle");
+let dateInput = document.getElementById("duedate");
+let textarea = document.getElementById("description");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
-let add = document.getElementById("add");
+let add = document.getElementById("submitData");
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submitData", (e) => {
   e.preventDefault();
   formValidation();
 });
@@ -33,9 +33,9 @@ let data = [{}];
 
 let acceptData = () => {
   data.push({
-    text: textInput.value,
-    date: dateInput.value,
-    description: textarea.value,
+    text: tasktitle.value,
+    date: duedate.value,
+    description: description.value,
   });
 
   localStorage.setItem("data", JSON.stringify(data));
@@ -75,17 +75,17 @@ let deleteTask = (e) => {
 let editTask = (e) => {
   let selectedTask = e.parentElement.parentElement;
 
-  textInput.value = selectedTask.children[0].innerHTML;
-  dateInput.value = selectedTask.children[1].innerHTML;
-  textarea.value = selectedTask.children[2].innerHTML;
+  tasktitle.value = selectedTask.children[0].innerHTML;
+  duedate.value = selectedTask.children[1].innerHTML;
+  description.value = selectedTask.children[2].innerHTML;
 
   deleteTask(e);
 };
 
 let resetForm = () => {
-  textInput.value = "";
-  dateInput.value = "";
-  textarea.value = "";
+  tasktitle.value = "";
+  duedate.value = "";
+  description.value = "";
 };
 
 (() => {
