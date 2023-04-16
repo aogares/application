@@ -5,7 +5,7 @@ let dateInput = document.getElementById("duedate");
 let textarea = document.getElementById("description");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
-let add = document.getElementById("submitData");
+let submitData = document.getElementById("submitData");
 
 form.addEventListener("submitData", (e) => {
   e.preventDefault();
@@ -13,7 +13,7 @@ form.addEventListener("submitData", (e) => {
 });
 
 let formValidation = () => {
-  if (textInput.value === "") {
+  if (tasktitle.value === "") {
     console.log("failure");
     msg.innerHTML = "Task cannot be blank";
   } else {
@@ -33,8 +33,8 @@ let data = [{}];
 
 let acceptData = () => {
   data.push({
-    text: tasktitle.value,
-    date: duedate.value,
+    tasktitle: tasktitle.value,
+    duedate: duedate.value,
     description: description.value,
   });
 
