@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-     <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
-         <span>Add New Task</span>
-         <i class="fas fa-plus"></i>
-    </div>
 
     <form>
         <div class="container">
             <h1 class="mb-3">TODO App</h1>
             <hr>
+             
+            <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
+                 <span>Add New Task</span>
+                 <i class="fas fa-plus"></i>
+            </div>
 
             <label for="tasktitle"><b>Task Title</b></label>
             <input type="text" placeholder="Enter Task Title" name="tasktitle" id="tasktitle" required>
@@ -34,13 +34,16 @@
 
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" id="submitData" name="submitData" class="registerbtn">Submit</button>
+            
+            
+             <h5 class="text-center my-3">Tasks</h5>
+
+             <div id="tasks"></div>
 
         </div>
 
     </form>
-    <h5 class="text-center my-3">Tasks</h5>
-
-    <div id="tasks"></div>
+  
 </body>
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
