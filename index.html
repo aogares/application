@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TODO App</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-  <script type="module">
+
+    <form>
+        <div class="container">
+            <h1>Register</h1>
+            <hr>
+
+            <label for="tasktitle"><b>Task Title</b></label>
+            <input type="text" placeholder="Enter Task Title" name="tasktitle" id="tasktitle" required>
+
+            <label><b>Due Date</b></label>
+            <input type="dateInput" name="duedate" id="duedate" required>
+
+            <label><b>Description</b></label>
+            <input type="text" placeholder="Description" name="description" id="description" required>
+            <hr>
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="submitData" name="submitData" class="registerbtn">Submit</button>
+
+        </div>
+
+    </form>
+</body>
+</html>
+
+<script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
     import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
@@ -26,87 +42,24 @@
   
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyCSQO3WY8KmfVXM6siqZVj4-hqHbB4rirk",
-      authDomain: "fir-crud-dc0ee.firebaseapp.com",
-      projectId: "fir-crud-dc0ee",
-      storageBucket: "fir-crud-dc0ee.appspot.com",
-      messagingSenderId: "578294013427",
-      appId: "1:578294013427:web:54894730874ac48b80c686"
+        apiKey: "AIzaSyDpnwboJUwHtx0-L2z1QYvfuxTQbSuWJRk",
+        authDomain: "crud-d7cb9.firebaseapp.com",
+        databaseURL: "https://crud-d7cb9-default-rtdb.firebaseio.com",
+        projectId: "crud-d7cb9",
+        storageBucket: "crud-d7cb9.appspot.com",
+        messagingSenderId: "80177244965",
+        appId: "1:80177244965:web:c8db16de1da90abb5b88cc"
     };
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-  </script>
-  
-  <div class="app">
-    <h4 class="mb-3">TODO App</h4>
 
-
-    <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
-      <span>Add New Task</span>
-      <i class="fas fa-plus"></i>
-    </div>
-
-    <!-- Modal -->
-    <form class="modal fade" id="form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Task</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <label for="tasktitle"><p>Task Title</p></label>
-            <input type="text" class="form-control" name="tasktitle" id="tasktitle" required>
-            <div id="msg"></div>
-            <br>
-            <label><p>Due Date</p></label>
-            <input type="date" class="form-control" name="duedate" id="duedate" required>
-            <br>
-            <label><p>Description</p></label>
-            <textarea name="description" class="form-control" id="description" cols="30" rows="5 required"></textarea>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" id="submit" class="btn btn-primary">Add</button>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <h5 class="text-center my-3">Tasks</h5>
-
-    <div id="tasks">
-
-    </div>
-  </div>
-</body>
-<script src="main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import {getDatabase, ref, set, onValue, update} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            // Your configurations here
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-
-    submit.addEventListener('click', (e) => {
+    submitData.addEventListener('click', (e) => {
 
         var tasktitle = document.getElementById('tasktitle').value;
         var duedate = document.getElementById('duedate').value;
-        var description = document.getElementById('descrription').value;
+        var description = document.getElementById('description').value;
 
         // const newKey = push(child(ref(database), 'todo')).key;
 
@@ -161,6 +114,3 @@ removeData.addEventListener('click', (e) => {
 });
 
   </script>
-
-
-</html>
