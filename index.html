@@ -58,18 +58,18 @@
           </div>
           <div class="modal-body">
             <p>Task Title</p>
-            <input type="text" class="form-control" name="tasktitle" id="textInput" required>
+            <input type="text" class="form-control" name="tasktitle" id="tasktitle" required>
             <div id="msg"></div>
             <br>
             <p>Due Date</p>
-            <input type="date" class="form-control" name="duedate" id="dateInput" required>
+            <input type="date" class="form-control" name="duedate" id="duedate" required>
             <br>
             <p>Description</p>
-            <textarea name="description" class="form-control" id="textarea" cols="30" rows="5 required"></textarea>
+            <textarea name="description" class="form-control" id="description" cols="30" rows="5 required"></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" id="add" class="btn btn-primary">Add</button>
+            <button type="submit" id="submit" class="btn btn-primary">Add</button>
           </div>
         </div>
       </div>
@@ -104,19 +104,19 @@
         const database = getDatabase(app);
 
 
-    add.addEventListener('click', (e) => {
+    submit.addEventListener('click', (e) => {
 
-        var tasktitle = document.getElementById('textInput').value;
-        var duedate = document.getElementById('dateInput').value;
-        var description = document.getElementById('textarea').value;
+        var tasktitle = document.getElementById('tasktitle').value;
+        var duedate = document.getElementById('duedate').value;
+        var description = document.getElementById('descrription').value;
 
         // const newKey = push(child(ref(database), 'todo')).key;
 
 //add data
         set(ref(database, 'todo/' + tasktitle), {
-            tasktitle: textInput,
-            duedate: dateInput,
-            description: textarea
+            TaskTitle: tasktitle,
+            DueDate: duedate,
+            Description: description
         }).then(() => {
             // Data saved successfully!
             alert('data submitted');
@@ -133,15 +133,15 @@ readData.addEventListener('click', (e) => {
         const starCountRef = ref(database, 'todo/' + tasktitle);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
-            alert(data.dateInput);
+            alert(data.duedate);
         });
 });
 
 updateData.addEventListener('click', (e) => {
 //update data
         update(ref(database, 'todo/' + tasktitle), {
-            duedate: dateInput,
-            description: textarea
+            DueDate: duedate,
+            Description: description
         }).then(() => {
             // Data saved successfully!
             alert('data updated');
@@ -155,9 +155,9 @@ updateData.addEventListener('click', (e) => {
 removeData.addEventListener('click', (e) => {
 //remove data
         removeData.addEventListener('click',(e) => {
-            var tasktitle = document.getElementById('textInput').value;
+            var TaskTitle = document.getElementById('tasktitle').value;
 
-            remove(ref(database, 'todo/' + textInput));
+            remove(ref(database, 'todo/' + tasktitle));
             alert('removed');
         });
 });
