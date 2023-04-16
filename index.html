@@ -114,9 +114,9 @@
 
 //add data
         set(ref(database, 'todo/' + tasktitle), {
-            TaskTitle: tasktitle,
-            DueDate: duedate,
-            Description: description
+            tasktitle: tasktitle,
+            duedate: duedate,
+            description: description
         }).then(() => {
             // Data saved successfully!
             alert('data submitted');
@@ -140,8 +140,8 @@ readData.addEventListener('click', (e) => {
 updateData.addEventListener('click', (e) => {
 //update data
         update(ref(database, 'todo/' + tasktitle), {
-            DueDate: duedate,
-            Description: description
+            duedate: duedate,
+            description: description
         }).then(() => {
             // Data saved successfully!
             alert('data updated');
@@ -155,7 +155,7 @@ updateData.addEventListener('click', (e) => {
 removeData.addEventListener('click', (e) => {
 //remove data
         removeData.addEventListener('click',(e) => {
-            var TaskTitle = document.getElementById('tasktitle').value;
+            var tasktitle = document.getElementById('tasktitle').value;
 
             remove(ref(database, 'todo/' + tasktitle));
             alert('removed');
