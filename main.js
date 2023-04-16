@@ -1,19 +1,18 @@
-
 let form = document.getElementById("form");
-let textInput = document.getElementById("tasktitle");
-let dateInput = document.getElementById("duedate");
-let textarea = document.getElementById("description");
+let textInput = document.getElementById("textInput");
+let dateInput = document.getElementById("dateInput");
+let textarea = document.getElementById("textarea");
 let msg = document.getElementById("msg");
 let tasks = document.getElementById("tasks");
-let submitData = document.getElementById("submitData");
+let add = document.getElementById("add");
 
-form.addEventListener("submitData", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   formValidation();
 });
 
 let formValidation = () => {
-  if (tasktitle.value === "") {
+  if (textInput.value === "") {
     console.log("failure");
     msg.innerHTML = "Task cannot be blank";
   } else {
@@ -33,9 +32,9 @@ let data = [{}];
 
 let acceptData = () => {
   data.push({
-    tasktitle: tasktitle.value,
-    duedate: duedate.value,
-    description: description.value,
+    text: textInput.value,
+    date: dateInput.value,
+    description: textarea.value,
   });
 
   localStorage.setItem("data", JSON.stringify(data));
@@ -75,17 +74,17 @@ let deleteTask = (e) => {
 let editTask = (e) => {
   let selectedTask = e.parentElement.parentElement;
 
-  tasktitle.value = selectedTask.children[0].innerHTML;
-  duedate.value = selectedTask.children[1].innerHTML;
-  description.value = selectedTask.children[2].innerHTML;
+  textInput.value = selectedTask.children[0].innerHTML;
+  dateInput.value = selectedTask.children[1].innerHTML;
+  textarea.value = selectedTask.children[2].innerHTML;
 
   deleteTask(e);
 };
 
 let resetForm = () => {
-  tasktitle.value = "";
-  duedate.value = "";
-  description.value = "";
+  textInput.value = "";
+  dateInput.value = "";
+  textarea.value = "";
 };
 
 (() => {
