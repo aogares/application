@@ -12,46 +12,26 @@
 <body>
 
     
-        <div class="app">
-    <h4 class="mb-3">TODO App</h4>
+      <form>
+        <div class="container">
+            <h1>Register</h1>
+            <hr>
 
+            <label for="tasktitle"><b>Task Title</b></label>
+            <input type="text" placeholder="Enter Task Title" name="tasktitle" id="tasktitle" required>
 
-    <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
-      <span>Add New Task</span>
-      <i class="fas fa-plus"></i>
-    </div>
+            <label><b>Due Date</b></label>
+            <input type="dateInput" name="duedate" id="duedate" required>
 
-    <!-- Modal -->
-    <form class="modal fade" id="form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Task</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Task Title</p>
-            <input type="text" class="form-control" name="textInput" id="textInput">
-            <div id="msg"></div>
-            <br>
-            <p>Due Date</p>
-            <input type="date" class="form-control" name="textInput" id="dateInput">
-            <br>
-            <p>Description</p>
-            <textarea name="textarea" class="form-control" id="textarea" cols="30" rows="5"></textarea>
-          </div>
-          <div class="modal-footer">
+            <label><b>Description</b></label>
+            <input type="text" placeholder="Description" name="description" id="description" required>
+            <hr>
+
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" id="submit" class="btn btn-primary">Add</button>
-          </div>
+            <button type="button" id="submitData" name="submitData" class="registerbtn">Submit</button>
+
         </div>
-      </div>
-    </form>
-
-    <h5 class="text-center my-3">Tasks</h5>
-
-    <div id="tasks"></div>
-  </div>
+      </form>
 
     
   
@@ -84,19 +64,23 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
     submitData.addEventListener('click', (e) => {
 
-        var textInput = document.getElementById('textInput').value;
-        var dateInput = document.getElementById('dateInput').value;
-        var textarea = document.getElementById('textarea').value;
+        var tasktitle = document.getElementById('tasktitle').value;
+        var duedate = document.getElementById('duedate').value;
+        var description = document.getElementById('description').value;
 
         // const newKey = push(child(ref(database), 'todo')).key;
 
 //add data
-        set(ref(database, 'todo/' + textInput), {
-            textInput: textInput,
-            dateInput: dateInput,
-            textarea: textarea
+        set(ref(database, 'todo/' + tasktitle), {
+            tasktitle: tasktitle,
+            duedate: duedate,
+            description: description
         }).then(() => {
             // Data saved successfully!
             alert('data submitted');
@@ -110,18 +94,18 @@
 
 readData.addEventListener('click', (e) => {
 // read data
-        const starCountRef = ref(database, 'todo/' + textInput);
+        const starCountRef = ref(database, 'todo/' + tasktitle);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             alert(data.duedate);
         });
 });
-    
+
 updateData.addEventListener('click', (e) => {
 //update data
-        update(ref(database, 'todo/' + textInput), {
-            dateInput: dateInput,
-            textarea: textarea
+        update(ref(database, 'todo/' + tasktitle), {
+            duedate: duedate,
+            description: description
         }).then(() => {
             // Data saved successfully!
             alert('data updated');
@@ -135,11 +119,10 @@ updateData.addEventListener('click', (e) => {
 removeData.addEventListener('click', (e) => {
 //remove data
         removeData.addEventListener('click',(e) => {
-            var textInput = document.getElementById('textInput').value;
+            var tasktitle = document.getElementById('tasktitle').value;
 
-            remove(ref(database, 'todo/' + textInput));
+            remove(ref(database, 'todo/' + tasktitle));
             alert('removed');
         });
 });
-
-  </script>
+</script>
