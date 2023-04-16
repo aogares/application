@@ -62,44 +62,5 @@
 <script src="main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-    apiKey: "AIzaSyDpnwboJUwHtx0-L2z1QYvfuxTQbSuWJRk",
-    authDomain: "crud-d7cb9.firebaseapp.com",
-    databaseURL: "https://crud-d7cb9-default-rtdb.firebaseio.com",
-    projectId: "crud-d7cb9",
-    storageBucket: "crud-d7cb9.appspot.com",
-    messagingSenderId: "80177244965",
-    appId: "1:80177244965:web:c8db16de1da90abb5b88cc"
-  };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-  
-  function writeUserData(textInput, dateInput, textarea) {
-  const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
-    Task Title: textInput,
-    Due Date: dateInput,
-    Description : textarea
-  });
-    
-    const db = getDatabase();
-const starCountRef = ref(db, 'posts/' + postId + '/starCount');
-onValue(starCountRef, (snapshot) => {
-  const data = snapshot.val();
-  updateStarCount(postElement, data);
-});
-}
-  </script>
 
 </html>
