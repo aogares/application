@@ -20,9 +20,6 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
-const { initializeApp } = require("firebase/app");
-const { initializeAppCheck, ReCaptchaV3Provider } = require("firebase/app-check");
-
 const app = initializeApp({
   // Your firebase configuration object
 });
